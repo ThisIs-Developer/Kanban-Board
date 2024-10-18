@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Kanban Board</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --text-color: #333;
+            --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+        }
+
+        .dark-mode {
+            --glass-bg: rgba(0, 0, 0, 0.2);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --card-bg: rgba(30, 30, 30, 0.9);
+            --text-color: #fff;
+            --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+
+        .dark-mode body {
+            background: linear-gradient(45deg, #2c3e50, #3498db);
+        }
+
+        .kanban-container {
+            padding: 2rem;
+            overflow-x: auto;
+        }
+
+        .kanban-column {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            min-height: 70vh;
+            box-shadow: var(--shadow);
+        }
+
+        .column-header {
+            font-size: 1.25rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--glass-border);
+        }
+
+        .task-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            cursor: move;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .task-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .task-card.dragging {
+            opacity: 0.5;
+            transform: scale(1.05);
+        }
+
+        .task-title {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .task-description {
+            font-size: 0.9rem;
+            color: var(--text-color);
+            opacity: 0.8;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 1000;
+            background: var(--glass-bg);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            color: var(--text-color);
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .kanban-container {
+                padding: 1rem;
+            }
+            
+            .kanban-column {
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle">Toggle Theme</button>
+    <div class="container-fluid kanban-container">
+        <div class="row g-4">
+            <div class="col-12 col-md-4">
+                <div class="kanban-column" data-column="todo">
+                    <h2 class="column-header">To Do</h2>
+                    <div class="task-list">
+                        <div class="task-card" draggable="true">
+                            <h3 class="task-title">Design System</h3>
+                            <p class="task-description">Create a comprehensive design system for the new product</p>
+                        </div>
+                        <div class="task-card" draggable="true">
+                            <h3 class="task-title">User Research</h3>
+                            <p class="task-description">Conduct user interviews and analyze feedback</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="kanban-column" data-column="inprogress">
+                    <h2 class="column-header">In Progress</h2>
+                    <div class="task-list">
+                        <div class="task-card" draggable="true">
+                            <h3 class="task-title">Frontend Development</h3>
+                            <p class="task-description">Implement the new dashboard interface</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="kanban-column" data-column="done">
+                    <h2 class="column-header">Done</h2>
+                    <div class="task-list">
+                        <div class="task-card" draggable="true">
+                            <h3 class="task-title">Wireframes</h3>
+                            <p class="task-description">Create initial wireframes for key pages</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const taskCards = document.querySelectorAll('.task-card');
+            const columns = document.querySelectorAll('.kanban-column');
+            let draggedCard = null;
+
+            // Theme toggle functionality
+            const themeToggle = document.querySelector('.theme-toggle');
+            themeToggle.addEventListener('click', () => {
+                document.documentElement.classList.toggle('dark-mode');
+            });
+
+            // Drag and drop functionality
+            taskCards.forEach(card => {
+                card.addEventListener('dragstart', (e) => {
+                    draggedCard = card;
+                    card.classList.add('dragging');
+                    e.dataTransfer.setData('text/plain', '');
+                });
+
+                card.addEventListener('dragend', () => {
+                    card.classList.remove('dragging');
+                    draggedCard = null;
+                });
+            });
+
+            columns.forEach(column => {
+                column.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    const taskList = column.querySelector('.task-list');
+                    const afterElement = getDragAfterElement(taskList, e.clientY);
+                    
+                    if (draggedCard) {
+                        if (afterElement) {
+                            taskList.insertBefore(draggedCard, afterElement);
+                        } else {
+                            taskList.appendChild(draggedCard);
+                        }
+                    }
+                });
+            });
+
+            // Helper function to determine card position
+            function getDragAfterElement(container, y) {
+                const draggableElements = [...container.querySelectorAll('.task-card:not(.dragging)')];
+
+                return draggableElements.reduce((closest, child) => {
+                    const box = child.getBoundingClientRect();
+                    const offset = y - box.top - box.height / 2;
+
+                    if (offset < 0 && offset > closest.offset) {
+                        return { offset: offset, element: child };
+                    } else {
+                        return closest;
+                    }
+                }, { offset: Number.NEGATIVE_INFINITY }).element;
+            }
+
+            // Add new task functionality (example)
+            function addNewTask(columnId, title, description) {
+                const column = document.querySelector(`[data-column="${columnId}"]`);
+                const taskList = column.querySelector('.task-list');
+                
+                const newTask = document.createElement('div');
+                newTask.className = 'task-card';
+                newTask.draggable = true;
+                newTask.innerHTML = `
+                    <h3 class="task-title">${title}</h3>
+                    <p class="task-description">${description}</p>
+                `;
+
+                // Add drag event listeners
+                newTask.addEventListener('dragstart', (e) => {
+                    draggedCard = newTask;
+                    newTask.classList.add('dragging');
+                    e.dataTransfer.setData('text/plain', '');
+                });
+
+                newTask.addEventListener('dragend', () => {
+                    newTask.classList.remove('dragging');
+                    draggedCard = null;
+                });
+
+                taskList.appendChild(newTask);
+            }
+
+            // Example: Add a new task after 2 seconds
+            setTimeout(() => {
+                addNewTask('todo', 'New Feature', 'Implement dark mode toggle');
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
