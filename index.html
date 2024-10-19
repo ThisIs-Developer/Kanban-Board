@@ -20,6 +20,7 @@
         --text-color: #333;
         --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
         --accent-color: #4ecdc4;
+        --footer-bg: rgba(255, 255, 255, 0.25);
       }
 
       .dark-mode {
@@ -29,6 +30,7 @@
         --text-color: #fff;
         --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
         --accent-color: #3498db;
+        --footer-bg: rgba(0, 0, 0, 0.35);
       }
 
       body {
@@ -36,6 +38,8 @@
         background-image: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
         color: var(--text-color);
         transition: all 0.3s ease;
+        position: relative;
+        padding-bottom: 60px;
       }
 
       .dark-mode body {
@@ -176,6 +180,24 @@
         opacity: 0.9;
       }
 
+      /* Footer Styles */
+      .glass-footer a{
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 1rem;
+        background: var(--footer-bg);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        text-align: center;
+        z-index: 1000;
+        letter-spacing: 1px;
+        font-weight: 500;
+        color: var(--text-color);
+        text-decoration: none;
+      }
+
       @media (max-width: 768px) {
         .kanban-container {
           padding: 1rem;
@@ -233,7 +255,10 @@
       </div>
     </div>
 
-    <!-- Task Modal -->
+    <footer class="glass-footer">
+      <a href="https://baivabsarkar.pages.dev/" target="_blank">@ThisIsDeveloper</a>
+    </footer>
+
     <div class="modal fade" id="taskModal" tabindex="-1">
       <div class="modal-dialog">
         <div class="modal-content">
