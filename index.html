@@ -289,72 +289,42 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
     <script>
-      // Initialize tasks with sample data
       let tasks = {
-        todo: [
-          {
-            id: 1,
-            title: "Design System",
-            description:
-              "Create a comprehensive design system for the new product",
-          },
-          {
-            id: 2,
-            title: "User Research",
-            description: "Conduct user interviews and analyze feedback",
-          },
-        ],
-        inprogress: [
-          {
-            id: 3,
-            title: "Frontend Development",
-            description: "Implement the new dashboard interface",
-          },
-        ],
-        done: [
-          {
-            id: 4,
-            title: "Wireframes",
-            description: "Create initial wireframes for key pages",
-          },
-        ],
+        todo: [],
+        inprogress: [],
+        done: [],
       };
-
-      let nextTaskId = 5;
+    
+      let nextTaskId = 1;
       let taskModal;
       let editingTaskId = null;
       let draggedCard = null;
-
+    
       document.addEventListener("DOMContentLoaded", () => {
-        // Initialize Bootstrap modal
         taskModal = new bootstrap.Modal(document.getElementById("taskModal"));
-
-        // Initialize theme toggle
+        loadFromLocalStorage();
+        renderAllTasks();
+        setupDragAndDrop();
+    
         const themeToggle = document.querySelector(".theme-toggle");
         const themeIcon = themeToggle.querySelector("i");
-
+    
         themeToggle.addEventListener("click", () => {
           document.documentElement.classList.toggle("dark-mode");
           themeIcon.classList.toggle("fa-moon");
           themeIcon.classList.toggle("fa-sun");
         });
-
-        // Initialize drag and drop
-        setupDragAndDrop();
-
-        // Render initial tasks
-        renderAllTasks();
       });
-
+    
       function setupDragAndDrop() {
         const columns = document.querySelectorAll(".kanban-column");
-
+    
         columns.forEach((column) => {
           column.addEventListener("dragover", (e) => {
             e.preventDefault();
             const taskList = column.querySelector(".task-list");
             const afterElement = getDragAfterElement(taskList, e.clientY);
-
+    
             if (draggedCard) {
               if (afterElement) {
                 taskList.insertBefore(draggedCard, afterElement);
@@ -363,7 +333,7 @@
               }
             }
           });
-
+    
           column.addEventListener("drop", (e) => {
             e.preventDefault();
             if (draggedCard) {
@@ -374,17 +344,17 @@
           });
         });
       }
-
+    
       function getDragAfterElement(container, y) {
         const draggableElements = [
           ...container.querySelectorAll(".task-card:not(.dragging)"),
         ];
-
+    
         return draggableElements.reduce(
           (closest, child) => {
             const box = child.getBoundingClientRect();
             const offset = y - box.top - box.height / 2;
-
+    
             if (offset < 0 && offset > closest.offset) {
               return { offset: offset, element: child };
             } else {
@@ -394,7 +364,7 @@
           { offset: Number.NEGATIVE_INFINITY }
         ).element;
       }
-
+    
       function renderAllTasks() {
         Object.keys(tasks).forEach((columnId) => {
           const taskList = document.querySelector(
@@ -406,39 +376,39 @@
           });
         });
       }
-
+    
       function renderTask(task, container) {
         const taskElement = document.createElement("div");
         taskElement.className = "task-card";
         taskElement.draggable = true;
         taskElement.setAttribute("data-task-id", task.id);
-
+    
         taskElement.innerHTML = `
-        <div class="task-actions">
-            <button class="task-action-btn" onclick="editTask(${task.id})">
-                <i class="fas fa-edit"></i>
-            </button>
-            <button class="task-action-btn" onclick="deleteTask(${task.id})">
-                <i class="fas fa-trash"></i>
-            </button>
-        </div>
-        <h3 class="task-title">${task.title}</h3>
-        <p class="task-description">${task.description}</p>
-    `;
-
+          <div class="task-actions">
+              <button class="task-action-btn" onclick="editTask(${task.id})">
+                  <i class="fas fa-edit"></i>
+              </button>
+              <button class="task-action-btn" onclick="deleteTask(${task.id})">
+                  <i class="fas fa-trash"></i>
+              </button>
+          </div>
+          <h3 class="task-title">${task.title}</h3>
+          <p class="task-description">${task.description}</p>
+        `;
+    
         taskElement.addEventListener("dragstart", () => {
           taskElement.classList.add("dragging");
           draggedCard = taskElement;
         });
-
+    
         taskElement.addEventListener("dragend", () => {
           taskElement.classList.remove("dragging");
           draggedCard = null;
         });
-
+    
         container.appendChild(taskElement);
       }
-
+    
       function openAddTaskModal(columnId) {
         editingTaskId = null;
         document.getElementById("taskModalLabel").textContent = "Add New Task";
@@ -446,12 +416,11 @@
         document.getElementById("columnId").value = columnId;
         taskModal.show();
       }
-
+    
       function editTask(taskId) {
         editingTaskId = taskId;
         document.getElementById("taskModalLabel").textContent = "Edit Task";
-
-        // Find the task
+    
         let task;
         let columnId;
         Object.entries(tasks).forEach(([col, taskList]) => {
@@ -461,7 +430,7 @@
             columnId = col;
           }
         });
-
+    
         if (task) {
           document.getElementById("taskTitle").value = task.title;
           document.getElementById("taskDescription").value = task.description;
@@ -469,14 +438,13 @@
           taskModal.show();
         }
       }
-
+    
       function saveTask() {
         const title = document.getElementById("taskTitle").value;
         const description = document.getElementById("taskDescription").value;
         const columnId = document.getElementById("columnId").value;
-
+    
         if (editingTaskId) {
-          // Update existing task
           Object.values(tasks).forEach((columnTasks) => {
             const task = columnTasks.find((t) => t.id === editingTaskId);
             if (task) {
@@ -485,7 +453,6 @@
             }
           });
         } else {
-          // Add new task
           const newTask = {
             id: nextTaskId++,
             title,
@@ -493,11 +460,12 @@
           };
           tasks[columnId].push(newTask);
         }
-
+    
         renderAllTasks();
+        saveToLocalStorage();
         taskModal.hide();
       }
-
+    
       function deleteTask(taskId) {
         if (confirm("Are you sure you want to delete this task?")) {
           Object.keys(tasks).forEach((columnId) => {
@@ -506,55 +474,50 @@
             );
           });
           renderAllTasks();
+          saveToLocalStorage();
         }
       }
-
+    
       function moveTask(taskId, newColumn) {
-        // Find the task in all columns
         let taskToMove;
         let oldColumn;
-
+    
         Object.entries(tasks).forEach(([columnId, columnTasks]) => {
           const taskIndex = columnTasks.findIndex((task) => task.id === taskId);
           if (taskIndex !== -1) {
             taskToMove = columnTasks[taskIndex];
             oldColumn = columnId;
-            // Remove task from old column
             columnTasks.splice(taskIndex, 1);
           }
         });
-
+    
         if (taskToMove && oldColumn !== newColumn) {
-          // Add task to new column
           tasks[newColumn].push(taskToMove);
+          saveToLocalStorage();
         }
-
-        // Re-render all tasks to update the UI
+    
         renderAllTasks();
       }
-
-      // Local Storage functions for persistence
+    
       function saveToLocalStorage() {
         localStorage.setItem("kanbanTasks", JSON.stringify(tasks));
         localStorage.setItem("nextTaskId", nextTaskId.toString());
       }
-
+    
       function loadFromLocalStorage() {
         const savedTasks = localStorage.getItem("kanbanTasks");
         const savedNextTaskId = localStorage.getItem("nextTaskId");
-
+    
         if (savedTasks) {
           tasks = JSON.parse(savedTasks);
         }
-
+    
         if (savedNextTaskId) {
           nextTaskId = parseInt(savedNextTaskId);
         }
       }
-
-      // Add event listeners for local storage
+    
       window.addEventListener("beforeunload", saveToLocalStorage);
-      document.addEventListener("DOMContentLoaded", loadFromLocalStorage);
     </script>
   </body>
 </html>
