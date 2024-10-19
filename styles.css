@@ -1,0 +1,193 @@
+:root {
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(209, 208, 208, 0.5);
+    --card-bg: rgba(255, 255, 255, 0.9);
+    --text-color: #333;
+    --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    --accent-color: #4ecdc4;
+    --footer-bg: rgba(255, 255, 255, 0.25);
+}
+
+.dark-mode {
+    --glass-bg: rgba(0, 0, 0, 0.2);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --card-bg: rgba(30, 30, 30, 0.9);
+    --text-color: #fff;
+    --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    --accent-color: #3498db;
+    --footer-bg: rgba(0, 0, 0, 0.35);
+}
+
+body {
+    min-height: 100vh;
+    background-image: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+    color: var(--text-color);
+    transition: all 0.3s ease;
+    position: relative;
+    padding-bottom: 60px;
+}
+
+.dark-mode body {
+    background: linear-gradient(45deg, #2c3e50, #3498db);
+}
+
+.kanban-container {
+    padding: 2rem;
+    overflow-x: auto;
+}
+
+.kanban-column {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    min-height: 70vh;
+    box-shadow: var(--shadow);
+}
+
+.column-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--glass-border);
+}
+
+.add-task-btn {
+    background: var(--accent-color);
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.add-task-btn:hover {
+    transform: scale(1.1);
+}
+
+.task-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    cursor: move;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
+}
+
+.task-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.task-card.dragging {
+    opacity: 0.5;
+    transform: scale(1.05);
+}
+
+.task-title {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    margin-right: 60px;
+}
+
+.task-description {
+    font-size: 0.9rem;
+    color: var(--text-color);
+    opacity: 0.8;
+}
+
+.task-actions {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.task-action-btn {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    opacity: 0.6;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+    padding: 0.25rem;
+}
+
+.task-action-btn:hover {
+    opacity: 1;
+}
+
+.theme-toggle {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1000;
+    background: var(--glass-bg);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    color: var(--text-color);
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.modal-content {
+    background: var(--card-bg);
+    color: var(--text-color);
+}
+
+.modal-header,
+.modal-footer {
+    border-color: var(--glass-border);
+}
+
+.btn-primary {
+    background-color: var(--accent-color);
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-color);
+    opacity: 0.9;
+}
+
+.glass-footer a {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem;
+    background: var(--footer-bg);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    text-align: center;
+    z-index: 1000;
+    letter-spacing: 1px;
+    font-weight: 500;
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+@media (max-width: 768px) {
+    .kanban-container {
+        padding: 1rem;
+    }
+
+    .kanban-column {
+        margin-bottom: 1rem;
+    }
+}
