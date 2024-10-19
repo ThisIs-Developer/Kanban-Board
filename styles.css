@@ -190,7 +190,12 @@ body {
     .kanban-column {
         margin-bottom: 1rem;
     }
+
+    .storage-notice-content {
+        width: 90%;
+    }
 }
+
 .storage-notice-modal {
     position: fixed;
     top: 0;
