@@ -23,21 +23,19 @@ function setupMenu() {
     const menuDropdown = document.querySelector('.menu-dropdown');
     const resetButton = document.querySelector('.reset-button');
     const themeToggle = document.querySelector('.theme-toggle');
+    const githubButton = document.querySelector('.github-button');
     const themeIcon = themeToggle.querySelector('i');
 
-    // Toggle menu
     menuToggle.addEventListener('click', () => {
         menuDropdown.style.display = menuDropdown.style.display === 'none' ? 'block' : 'none';
     });
 
-    // Close menu when clicking outside
     document.addEventListener('click', (e) => {
         if (!menuToggle.contains(e.target) && !menuDropdown.contains(e.target)) {
             menuDropdown.style.display = 'none';
         }
     });
 
-    // Theme toggle
     themeToggle.addEventListener('click', () => {
         document.documentElement.classList.toggle('dark-mode');
         themeIcon.classList.toggle('fa-moon');
@@ -45,10 +43,13 @@ function setupMenu() {
         menuDropdown.style.display = 'none';
     });
 
-    // Reset functionality
+    githubButton.addEventListener('click', () => {
+        window.open('https://github.com/ThisIs-Developer/Kanban-Board', '_blank');
+        menuDropdown.style.display = 'none';
+    });
+
     resetButton.addEventListener('click', () => {
         if (confirm('Are you sure you want to reset all tasks? This action cannot be undone.')) {
-            // Clear all tasks
             tasks = {
                 todo: [],
                 inprogress: [],
@@ -56,10 +57,7 @@ function setupMenu() {
             };
             nextTaskId = 1;
             
-            // Clear localStorage
             localStorage.clear();
-            
-            // Reload the page
             window.location.reload();
         }
     });
