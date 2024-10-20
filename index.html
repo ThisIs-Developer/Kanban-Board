@@ -5,16 +5,23 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kanban Board</title>
-  <link rel="icon" type="image/png" href="assets/favicon.png" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
-  <link href="styles.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
   <button class="theme-toggle">
     <i class="fas fa-moon"></i>
   </button>
+
+  <div id="storageNotice" class="storage-notice-modal" style="display: none;">
+    <div class="storage-notice-content">
+      <h3>Welcome to Kanban</h3>
+      <p>This website will store your data in local storage. No personal information is collected or shared.</p>
+      <button class="understand-btn" onclick="acknowledgeStorageNotice()">I Understand</button>
+    </div>
+  </div>
 
   <div class="container-fluid kanban-container">
     <div class="row g-4">
@@ -57,14 +64,6 @@
   <footer class="glass-footer">
     <a href="https://baivabsarkar.pages.dev/" target="_blank">@ThisIsDeveloper</a>
   </footer>
-
-  <div id="storageNotice" class="storage-notice-modal">
-    <div class="storage-notice-content">
-      <h3>Welcome to Kanban</h3>
-      <p>This website will store your data in local storage. No personal information is collected or shared.</p>
-      <button class="understand-btn" onclick="acknowledgeStorageNotice()">I Understand</button>
-    </div>
-  </div>
 
   <div class="modal fade" id="taskModal" tabindex="-1">
     <div class="modal-dialog">

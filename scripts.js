@@ -231,30 +231,21 @@ window.addEventListener("beforeunload", saveToLocalStorage);
 function checkFirstVisit() {
     const hasVisited = localStorage.getItem('hasVisitedBefore');
     if (!hasVisited) {
-      document.getElementById('storageNotice').style.display = 'flex';
+        document.getElementById('storageNotice').style.display = 'flex';
     } else {
-      document.getElementById('storageNotice').style.display = 'none';
+        document.getElementById('storageNotice').style.display = 'none';
     }
-  }
+}
 
-  function acknowledgeStorageNotice() {
+function acknowledgeStorageNotice() {
     localStorage.setItem('hasVisitedBefore', 'true');
     document.getElementById('storageNotice').style.display = 'none';
-  }
+}
 
-  document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
     checkFirstVisit();
     taskModal = new bootstrap.Modal(document.getElementById("taskModal"));
     loadFromLocalStorage();
     renderAllTasks();
     setupDragAndDrop();
-
-    const themeToggle = document.querySelector(".theme-toggle");
-    const themeIcon = themeToggle.querySelector("i");
-
-    themeToggle.addEventListener("click", () => {
-      document.documentElement.classList.toggle("dark-mode");
-      themeIcon.classList.toggle("fa-moon");
-      themeIcon.classList.toggle("fa-sun");
-    });
-  });
+});
