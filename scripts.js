@@ -10,20 +10,60 @@ let editingTaskId = null;
 let draggedCard = null;
 
 document.addEventListener("DOMContentLoaded", () => {
+    checkFirstVisit();
     taskModal = new bootstrap.Modal(document.getElementById("taskModal"));
     loadFromLocalStorage();
     renderAllTasks();
     setupDragAndDrop();
-
-    const themeToggle = document.querySelector(".theme-toggle");
-    const themeIcon = themeToggle.querySelector("i");
-
-    themeToggle.addEventListener("click", () => {
-        document.documentElement.classList.toggle("dark-mode");
-        themeIcon.classList.toggle("fa-moon");
-        themeIcon.classList.toggle("fa-sun");
-    });
+    setupMenu();
 });
+
+function setupMenu() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const menuDropdown = document.querySelector('.menu-dropdown');
+    const resetButton = document.querySelector('.reset-button');
+    const themeToggle = document.querySelector('.theme-toggle');
+    const themeIcon = themeToggle.querySelector('i');
+
+    // Toggle menu
+    menuToggle.addEventListener('click', () => {
+        menuDropdown.style.display = menuDropdown.style.display === 'none' ? 'block' : 'none';
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!menuToggle.contains(e.target) && !menuDropdown.contains(e.target)) {
+            menuDropdown.style.display = 'none';
+        }
+    });
+
+    // Theme toggle
+    themeToggle.addEventListener('click', () => {
+        document.documentElement.classList.toggle('dark-mode');
+        themeIcon.classList.toggle('fa-moon');
+        themeIcon.classList.toggle('fa-sun');
+        menuDropdown.style.display = 'none';
+    });
+
+    // Reset functionality
+    resetButton.addEventListener('click', () => {
+        if (confirm('Are you sure you want to reset all tasks? This action cannot be undone.')) {
+            // Clear all tasks
+            tasks = {
+                todo: [],
+                inprogress: [],
+                done: []
+            };
+            nextTaskId = 1;
+            
+            // Clear localStorage
+            localStorage.clear();
+            
+            // Reload the page
+            window.location.reload();
+        }
+    });
+}
 
 function setupDragAndDrop() {
     const columns = document.querySelectorAll(".kanban-column");
@@ -103,7 +143,7 @@ function renderTask(task, container) {
         </div>
         <h3 class="task-title">${task.title}</h3>
         <p class="task-description">${task.description}</p>
-      `;
+    `;
 
     taskElement.addEventListener("dragstart", () => {
         taskElement.classList.add("dragging");
@@ -226,8 +266,6 @@ function loadFromLocalStorage() {
     }
 }
 
-window.addEventListener("beforeunload", saveToLocalStorage);
-
 function checkFirstVisit() {
     const hasVisited = localStorage.getItem('hasVisitedBefore');
     if (!hasVisited) {
@@ -242,10 +280,4 @@ function acknowledgeStorageNotice() {
     document.getElementById('storageNotice').style.display = 'none';
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    checkFirstVisit();
-    taskModal = new bootstrap.Modal(document.getElementById("taskModal"));
-    loadFromLocalStorage();
-    renderAllTasks();
-    setupDragAndDrop();
-});
+window.addEventListener("beforeunload", saveToLocalStorage);

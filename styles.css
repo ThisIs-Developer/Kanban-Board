@@ -130,19 +130,56 @@ body {
     opacity: 1;
 }
 
-.theme-toggle {
+.menu-container {
     position: fixed;
     top: 1rem;
     right: 1rem;
     z-index: 1000;
+}
+
+.menu-toggle {
     background: var(--glass-bg);
     border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
+    padding: 0.5rem;
+    border-radius: 8px;
     color: var(--text-color);
     backdrop-filter: blur(10px);
     cursor: pointer;
     transition: all 0.3s ease;
+}
+
+.menu-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 0.5rem;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    padding: 0.5rem;
+    min-width: 150px;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.5rem 1rem;
+    border: none;
+    background: none;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.menu-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.menu-item i {
+    width: 20px;
 }
 
 .modal-content {
@@ -180,20 +217,6 @@ body {
     font-weight: 500;
     color: var(--text-color);
     text-decoration: none;
-}
-
-@media (max-width: 768px) {
-    .kanban-container {
-        padding: 1rem;
-    }
-
-    .kanban-column {
-        margin-bottom: 1rem;
-    }
-
-    .storage-notice-content {
-        width: 90%;
-    }
 }
 
 .storage-notice-modal {
@@ -234,4 +257,18 @@ body {
 
 .understand-btn:hover {
     opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+    .kanban-container {
+        padding: 1rem;
+    }
+
+    .kanban-column {
+        margin-bottom: 1rem;
+    }
+
+    .storage-notice-content {
+        width: 90%;
+    }
 }
