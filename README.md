@@ -2,6 +2,8 @@
 
 A responsive and interactive **Kanban Board** built using **HTML, CSS, JavaScript**, and **Bootstrap**. This project allows users to manage tasks in **To Do**, **In Progress**, and **Done** columns, with features like drag-and-drop task management, dark mode, and local storage support.
 
+![Yellow And Black Time Management YouTube Thumbnail (1)](https://github.com/user-attachments/assets/2fa205da-3964-4022-931a-b954a9d17ae8)
+
 
 ## 📑 Features
 - **Task Management**: Add, edit, delete, and move tasks between columns.
@@ -22,11 +24,13 @@ You can view the live demo [here](https://kanbanboard.pages.dev/#).
 
 ## 📸 Screenshots
 ### 1. Light Mode:
-![Light Mode Screenshot](lightmode.png)
+![Light Mode Screenshot](https://github.com/user-attachments/assets/05422b1a-c628-450f-867c-12abf098c847)
 
 ### 2. Dark Mode:
-![Dark Mode Screenshot](darkmode.png)
+![Dark Mode Screenshot](https://github.com/user-attachments/assets/d21676d2-10e5-4873-8214-d4833a135441)
 
+### 3. Mobile View:
+![1000100265](https://github.com/user-attachments/assets/ce5b6e7f-6db2-4efe-9b76-7c8c5ba30739)
 
 ## ⚙️ Setup Instructions
 ### Prerequisites
