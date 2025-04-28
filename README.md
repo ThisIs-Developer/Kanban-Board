@@ -1,65 +1,129 @@
-# Kanban Board
+# TaskFlow - Modern Task Management System
 
-A responsive and interactive **Kanban Board** built using **HTML, CSS, JavaScript**, and **Bootstrap**. This project allows users to manage tasks in **To Do**, **In Progress**, and **Done** columns, with features like drag-and-drop task management, dark mode, and local storage support.
+[![TaskFlow Banner](https://img.shields.io/badge/TaskFlow-Task%20Management-blue)](https://kanbanboard.pages.dev/)
 
-![Yellow And Black Time Management YouTube Thumbnail (1)](https://github.com/user-attachments/assets/2fa205da-3964-4022-931a-b954a9d17ae8)
+A modern, intuitive task management system designed to boost productivity and team collaboration. TaskFlow provides a flexible kanban-style interface for organizing tasks across customizable columns, perfect for individuals and teams looking to streamline their workflow.
 
+## 🌟 Features
 
-## 📑 Features
-- **Task Management**: Add, edit, delete, and move tasks between columns.
-- **Drag and Drop**: Organize tasks using an intuitive drag-and-drop interface.
-- **Mobile Support**: Fully responsive design with mobile-specific enhancements (e.g., double-tap to select and move tasks).
-- **Dark Mode**: Toggle between light and dark themes for better accessibility.
-- **Local Storage**: Automatically saves tasks locally so they persist across sessions.
-- **Reset Board**: Option to clear all tasks and start fresh.
+- **Intuitive Drag-and-Drop Interface**: Easily move tasks between different stages of completion
+- **Customizable Columns**: Create and manage columns to match your workflow
+- **Comprehensive Task Details**: Include descriptions, due dates, priorities, assignees, and more
+- **Task Organization Options**:
+  - Priority levels (Low, Medium, High)
+  - Due dates
+  - Task assignment
+  - Custom tags
+  - Attachments with URLs
+  - Subtasks/Checklists
+  - Comments
+- **Search Functionality**: Quickly find tasks using the search bar
+- **Responsive Design**: Works seamlessly on desktop and mobile devices
+- **Local Storage**: All data is saved in your browser's local storage for persistence
 
-## 🚀 Demo
-You can view the live demo [here](https://kanbanboard.pages.dev/#).
-
-## 🛠️ Technologies Used
-- **HTML5**: For the page structure and modals.
-- **CSS3**: Styling the Kanban board and responsiveness.
-- **JavaScript**: Task logic, drag-and-drop interactions, and local storage.
-- **Bootstrap**: For modals, grid layout, and quick UI components.
+---
 
 ## 📸 Screenshots
-### 1. Light Mode:
-![Light Mode Screenshot](https://github.com/user-attachments/assets/05422b1a-c628-450f-867c-12abf098c847)
 
-### 2. Dark Mode:
-![Dark Mode Screenshot](https://github.com/user-attachments/assets/d21676d2-10e5-4873-8214-d4833a135441)
+![TaskFlow Board View](screenshots/board-view.png)
+*The main board view with multiple columns and tasks*
 
-### 3. Mobile View:
-![1000100265](https://github.com/user-attachments/assets/ce5b6e7f-6db2-4efe-9b76-7c8c5ba30739)
+![Task Detail Modal](screenshots/task-detail.png)
+*Detailed task information modal*
 
-## ⚙️ Setup Instructions
-### Prerequisites
-Make sure you have the following installed:
-- Any modern web browser (Chrome, Firefox, etc.)
+---
 
-### Running Locally
+## 💻 Technologies Used
+
+- HTML5
+- CSS3
+- JavaScript (Vanilla)
+- Bootstrap 5.3.0
+- Font Awesome 6.4.0
+- Google Fonts (Poppins)
+- SweetAlert2 for notifications
+
+## 🚀 Getting Started
+
+### Online Demo
+
+Visit [TaskFlow Demo](https://kanbanboard.pages.dev/) to see the application in action.
+
+### Local Installation
+
 1. Clone the repository:
    ```bash
-   git clone https://github.com/ThisIs-Developer/Kanban-Board.git
+   git clone https://github.com/yourusername/taskflow.git
    ```
 
-2. Open the `index.html` file in your browser:
+2. Navigate to the project directory:
    ```bash
-   open index.html
+   cd taskflow
    ```
 
-### GitHub Repository
-You can find the repository for this project [here](https://github.com/ThisIs-Developer/Kanban-Board).
+3. Open `index.html` in your browser to start using TaskFlow.
 
-## 📝 Usage
-1. **Add Task**: Click the **+ Add Task** button in any column to create a new task.
-2. **Edit Task**: Click the **edit** icon on a task card to modify its title or description.
-3. **Delete Task**: Click the **trash** icon to permanently remove a task.
-4. **Drag and Drop**: Simply drag a task card to move it between columns.
-5. **Reset Board**: Use the menu to reset all tasks and clear the board.
+## 📱 Usage Guide
 
-## 🙌 Contributing
-Contributions are welcome! Please feel free to submit a pull request or report any issues via GitHub's issue tracker.
+1. **Getting Started**: Click the "Get Started" button on the welcome screen to access the main application.
+
+2. **Creating Columns**: 
+   - Click the "Add Column" button in the navigation bar
+   - Enter a title for your column (e.g., "To Do", "In Progress", "Done")
+   - Click "Save Column"
+
+3. **Adding Tasks**:
+   - Click the "Add Task" button in the navigation bar or the floating "+" button on mobile
+   - Fill in the task details:
+     - Title (required)
+     - Description
+     - Priority level
+     - Due date
+     - Assignee
+     - Tags (comma-separated)
+     - Attachments (with optional URLs)
+     - Subtasks/Checklist items
+     - Comments
+   - Click "Save Task"
+
+4. **Managing Tasks**:
+   - Click on any task card to view or edit its details
+   - Drag and drop tasks between columns to update their status
+   - Use the search bar to find specific tasks
+
+5. **Resetting Data**: Click the "Reset" button to clear all data and start fresh (with confirmation)
+
+## 🏗️ Project Structure
+
+- `index.html`: Main HTML structure and UI elements
+- `styles.css`: Custom styling and responsive design rules
+- `scripts.js`: JavaScript functionality for task and column management
+- `assets/`: Contains images and icons
+
+## 🔒 Data Privacy
+
+All data is stored locally in your browser using localStorage. No data is sent to any external servers.
+
+## 🔧 Customization
+
+TaskFlow can be customized by modifying the CSS variables in the `styles.css` file to match your brand colors and preferences.
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
 ## 📄 License
+
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+[![GitHub stars](https://img.shields.io/github/stars/yourusername/taskflow.svg?style=social&label=Star)](https://github.com/yourusername/taskflow)
+[![GitHub forks](https://img.shields.io/github/forks/yourusername/taskflow.svg?style=social&label=Fork)](https://github.com/yourusername/taskflow)
+[![GitHub issues](https://img.shields.io/github/issues/yourusername/taskflow.svg)](https://github.com/yourusername/taskflow/issues)
