@@ -53,7 +53,7 @@ Visit [TaskFlow Demo](https://kanbanboard.pages.dev/) to see the application in 
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/taskflow.git
+   git clone https://github.com/ThisIs-Developer/TaskFlow.git
    ```
 
 2. Navigate to the project directory:
@@ -124,6 +124,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-[![GitHub stars](https://img.shields.io/github/stars/yourusername/taskflow.svg?style=social&label=Star)](https://github.com/yourusername/taskflow)
-[![GitHub forks](https://img.shields.io/github/forks/yourusername/taskflow.svg?style=social&label=Fork)](https://github.com/yourusername/taskflow)
-[![GitHub issues](https://img.shields.io/github/issues/yourusername/taskflow.svg)](https://github.com/yourusername/taskflow/issues)
+[![GitHub stars](https://img.shields.io/github/stars/ThisIs-Developer/TaskFlow.svg?style=social&label=Star)](https://github.com/ThisIs-Developer/TaskFlow)
+[![GitHub forks](https://img.shields.io/github/forks/ThisIs-Developer/TaskFlow.svg?style=social&label=Fork)](https://github.com/ThisIs-Developer/TaskFlow)
+[![GitHub issues](https://img.shields.io/github/issues/ThisIs-Developer/TaskFlow.svg)](https://github.com/ThisIs-Developer/TaskFlow/issues)
