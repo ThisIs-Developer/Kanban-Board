@@ -1,6 +1,6 @@
 # TaskFlow - Modern Task Management System
 
-[![TaskFlow Banner](https://img.shields.io/badge/TaskFlow-Task%20Management-blue)](https://kanbanboard.pages.dev/)
+[![TaskFlow Banner](https://img.shields.io/badge/TaskFlow-Task%20Management-blue)](https://taskflowapp.pages.dev/)
 
 A modern, intuitive task management system designed to boost productivity and team collaboration. TaskFlow provides a flexible kanban-style interface for organizing tasks across customizable columns, perfect for individuals and teams looking to streamline their workflow.
 
@@ -49,7 +49,7 @@ A modern, intuitive task management system designed to boost productivity and te
 
 ### Online Demo
 
-Visit [TaskFlow Demo](https://kanbanboard.pages.dev/) to see the application in action.
+Visit [TaskFlow Demo](https://taskflowapp.pages.dev/) to see the application in action.
 
 ### Local Installation
 
