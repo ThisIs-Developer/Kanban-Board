@@ -562,6 +562,12 @@ function deleteTask(taskId) {
       boardData.tasks = boardData.tasks.filter((task) => task.id !== taskId);
       saveData();
       renderBoard();
+
+      const taskModal = bootstrap.Modal.getInstance(document.getElementById("taskModal"));
+      if (taskModal) {
+        taskModal.hide();
+      }
+
       Swal.fire(
         'Deleted!',
         'Task has been deleted.',
