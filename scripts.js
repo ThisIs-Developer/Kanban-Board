@@ -904,9 +904,16 @@ document.addEventListener("DOMContentLoaded", function () {
       if (result.isConfirmed) {
         boardData.columns = [];
         boardData.tasks = [];
-        initializeDefaultData();
+        document.getElementById("welcomeScreen").style.display = "flex";
+        document.getElementById("appContainer").style.display = "none";
+
+        document.getElementById("getStartedBtn").addEventListener("click", function () {
+          initializeDefaultData();
+          document.getElementById("welcomeScreen").style.display = "none";
+          document.getElementById("appContainer").style.display = "block";
+          renderBoard();
+        });
         saveData();
-        renderBoard();
         Swal.fire(
           'Deleted!',
           'All data has been deleted and reset.',

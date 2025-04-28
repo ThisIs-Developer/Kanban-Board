@@ -479,30 +479,26 @@ body {
   color: var(--primary);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 991px) {
   .navbar-nav {
     flex-direction: column;
     align-items: flex-start;
+    
+    padding: 10px;
   }
 
   .nav-item {
     margin-right: 0;
     margin-bottom: 10px;
+    
+    font-size: 14px;
   }
 
   .collapse.navbar-collapse {
     flex-direction: column;
     align-items: flex-start;
   }
-}
 
-@media (max-width: 480px) {
-  .nav-item {
-    font-size: 14px;
-  }
-  .navbar-nav {
-    padding: 10px;
-  }
   .navbar-collapse {
     padding: 5px;
   }
