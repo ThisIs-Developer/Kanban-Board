@@ -30,7 +30,7 @@ A modern, intuitive task management system designed to boost productivity and te
 ![TaskFlow Board View](assets/board-view.png)
 *The main board view with multiple columns and tasks*
 
-![Task Detail Modal](assets\task-detail.png)
+![Task Detail Modal](assets/task-detail.png)
 *Detailed task information modal*
 
 ---
