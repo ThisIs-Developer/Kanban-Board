@@ -1,0 +1,200 @@
+{
+  "columns": [
+    {
+      "id": "col-1",
+      "title": "To Do",
+      "order": 0
+    },
+    {
+      "id": "col-2",
+      "title": "In Progress",
+      "order": 1
+    },
+    {
+      "id": "col-3",
+      "title": "Done",
+      "order": 2
+    }
+  ],
+  "tasks": [
+    {
+      "id": "task-1",
+      "columnId": "col-1",
+      "title": "Build Registration Page",
+      "description": "Create a user-friendly registration page that captures name, email, password and displays proper error messages for validation.",
+      "priority": "medium",
+      "dueDate": "2025-05-10",
+      "assignee": "John Doe",
+      "tags": ["UI", "Authentication"],
+      "attachments": [],
+      "subtasks": [
+        { "text": "Form Design", "completed": false },
+        { "text": "Validation Logic", "completed": false }
+      ],
+      "createdAt": "2025-04-28T10:00:00Z"
+    },
+    {
+      "id": "task-2",
+      "columnId": "col-1",
+      "title": "Write API Documentation",
+      "description": "Document all API endpoints clearly with request body, response format, authentication details, and include sample successful and failed responses too.",
+      "priority": "high",
+      "dueDate": "2025-05-08",
+      "assignee": "Alice Smith",
+      "tags": ["Backend", "Docs"],
+      "attachments": [],
+      "subtasks": [
+        { "text": "GET /users", "completed": false },
+        { "text": "POST /login", "completed": true }
+      ],
+      "createdAt": "2025-04-28T10:05:00Z"
+    },
+    {
+      "id": "task-3",
+      "columnId": "col-1",
+      "title": "Prepare Sales Pitch Deck",
+      "description": "Design a professional and clean pitch deck highlighting project goals, timeline, budget breakdown, and client testimonials in crisp bullet points.",
+      "priority": "low",
+      "dueDate": "2025-05-12",
+      "assignee": "Michael Brown",
+      "tags": ["Marketing", "Presentation"],
+      "attachments": [],
+      "subtasks": [
+        { "text": "Draft Slide Content", "completed": true },
+        { "text": "Design Layout", "completed": false }
+      ],
+      "createdAt": "2025-04-28T10:10:00Z"
+    },
+    {
+      "id": "task-4",
+      "columnId": "col-1",
+      "title": "Research Competitor Features",
+      "description": "Analyze major competitors, document key features, user engagement strategies, marketing campaigns, and list improvement ideas for our platform.",
+      "priority": "medium",
+      "dueDate": "2025-05-11",
+      "assignee": "Emma Wilson",
+      "tags": ["Research"],
+      "attachments": [],
+      "subtasks": [
+        { "text": "Prepare Comparison Table", "completed": false }
+      ],
+      "createdAt": "2025-04-28T10:15:00Z"
+    },
+    {
+      "id": "task-5",
+      "columnId": "col-2",
+      "title": "Develop Notification System",
+      "description": "Create real-time notification system with WebSocket fallback support, display messages inside app interface, and allow notification preferences configuration.",
+      "priority": "high",
+      "dueDate": "2025-05-05",
+      "assignee": "David Johnson",
+      "tags": ["Backend", "WebSocket"],
+      "attachments": [],
+      "subtasks": [
+        { "text": "Socket.io Integration", "completed": true },
+        { "text": "Client-side UI", "completed": false }
+      ],
+      "createdAt": "2025-04-28T10:20:00Z"
+    },
+    {
+      "id": "task-6",
+      "columnId": "col-2",
+      "title": "Optimize Landing Page",
+      "description": "Improve page loading speed by compressing images, minimizing JavaScript bundles, lazy loading assets, and deferring non-essential scripts smartly.",
+      "priority": "medium",
+      "dueDate": "2025-05-04",
+      "assignee": "Sophia Martinez",
+      "tags": ["Frontend", "Performance"],
+      "attachments": [],
+      "subtasks": [
+        { "text": "Compress Images", "completed": true },
+        { "text": "Minify CSS/JS", "completed": true }
+      ],
+      "createdAt": "2025-04-28T10:25:00Z"
+    },
+    {
+      "id": "task-7",
+      "columnId": "col-2",
+      "title": "Integrate Stripe Payments",
+      "description": "Integrate Stripe API for one-time payments and subscriptions, handle webhooks correctly, ensure PCI compliance, and provide test environment sandbox.",
+      "priority": "high",
+      "dueDate": "2025-05-06",
+      "assignee": "Daniel Clark",
+      "tags": ["Payments", "Integration"],
+      "attachments": [],
+      "subtasks": [
+        { "text": "Test Stripe Charges", "completed": false }
+      ],
+      "createdAt": "2025-04-28T10:30:00Z"
+    },
+    {
+      "id": "task-8",
+      "columnId": "col-2",
+      "title": "Setup CI/CD Pipeline",
+      "description": "Configure GitHub Actions workflows to automatically build, test, lint, and deploy the app to staging and production environments without manual steps.",
+      "priority": "medium",
+      "dueDate": "2025-05-09",
+      "assignee": "Olivia Taylor",
+      "tags": ["DevOps", "Automation"],
+      "attachments": [],
+      "subtasks": [
+        { "text": "Setup Lint Checks", "completed": false }
+      ],
+      "createdAt": "2025-04-28T10:35:00Z"
+    },
+    {
+      "id": "task-9",
+      "columnId": "col-2",
+      "title": "Finalize New Branding",
+      "description": "Create consistent brand visuals including logos, typography, color palettes, and ensure usage guidelines are documented for design and marketing teams.",
+      "priority": "low",
+      "dueDate": "2025-05-07",
+      "assignee": "Emily Davis",
+      "tags": ["Branding", "Design"],
+      "attachments": [],
+      "subtasks": [],
+      "createdAt": "2025-04-28T10:40:00Z"
+    },
+    {
+      "id": "task-10",
+      "columnId": "col-3",
+      "title": "Setup Project Repository",
+      "description": "Initialize GitHub repository, configure branch protections, write initial README, add contributors' guidelines, and link to project management board properly.",
+      "priority": "low",
+      "dueDate": "2025-04-01",
+      "assignee": "William Lee",
+      "tags": ["GitHub", "Setup"],
+      "attachments": [],
+      "subtasks": [
+        { "text": "Create README.md", "completed": true }
+      ],
+      "createdAt": "2025-04-28T10:45:00Z"
+    },
+    {
+      "id": "task-11",
+      "columnId": "col-3",
+      "title": "Create Basic Wireframes",
+      "description": "Design initial wireframes for home page, dashboard, login page, and registration page, focusing mainly on core layout and navigation structure.",
+      "priority": "medium",
+      "dueDate": "2025-04-02",
+      "assignee": "Sophia Martinez",
+      "tags": ["UI", "Wireframes"],
+      "attachments": [],
+      "subtasks": [],
+      "createdAt": "2025-04-28T10:50:00Z"
+    },
+    {
+      "id": "task-12",
+      "columnId": "col-3",
+      "title": "Launch Initial Landing Page",
+      "description": "Deploy first version of public landing page with basic info about services, contact form, hero section, and responsive design support across devices.",
+      "priority": "high",
+      "dueDate": "2025-04-03",
+      "assignee": "James White",
+      "tags": ["Frontend", "Launch"],
+      "attachments": [],
+      "subtasks": [],
+      "createdAt": "2025-04-28T10:55:00Z"
+    }
+  ]
+}

@@ -548,17 +548,27 @@ function saveTask() {
 function deleteTask(taskId) {
   if (!taskId) return;
 
-  if (confirm("Are you sure you want to delete this task?")) {
-    boardData.tasks = boardData.tasks.filter((task) => task.id !== taskId);
-    saveData();
-    renderBoard();
-
-    // Close modal
-    const taskModal = bootstrap.Modal.getInstance(
-      document.getElementById("taskModal")
-    );
-    taskModal.hide();
-  }
+  Swal.fire({
+    title: 'Are you sure?',
+    text: "This will delete the task permanently.",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#d33',
+    cancelButtonColor: '#3085d6',
+    confirmButtonText: 'Yes, delete task!',
+    cancelButtonText: 'Cancel'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      boardData.tasks = boardData.tasks.filter((task) => task.id !== taskId);
+      saveData();
+      renderBoard();
+      Swal.fire(
+        'Deleted!',
+        'Task has been deleted.',
+        'success'
+      );
+    }
+  });
 }
 
 // ATTACHMENT FUNCTIONS
@@ -714,35 +724,37 @@ function saveColumn() {
 function deleteColumn(columnId) {
   if (!columnId) return;
 
-  if (
-    confirm(
-      "Are you sure you want to delete this column? All tasks in this column will be deleted."
-    )
-  ) {
-    // Delete column
-    boardData.columns = boardData.columns.filter(
-      (column) => column.id !== columnId
-    );
+  Swal.fire({
+    title: 'Are you sure?',
+    text: 'All tasks in this column will be deleted.',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Yes, delete it!',
+    cancelButtonText: 'Cancel',
+  }).then((result) => {
+    if (result.isConfirmed) {
+      boardData.columns = boardData.columns.filter(
+        (column) => column.id !== columnId
+      );
 
-    // Delete all tasks in the column
-    boardData.tasks = boardData.tasks.filter(
-      (task) => task.columnId !== columnId
-    );
+      boardData.tasks = boardData.tasks.filter(
+        (task) => task.columnId !== columnId
+      );
 
-    // Reorder remaining columns
-    boardData.columns.forEach((column, index) => {
-      column.order = index;
-    });
+      boardData.columns.forEach((column, index) => {
+        column.order = index;
+      });
 
-    saveData();
-    renderBoard();
+      saveData();
+      renderBoard();
 
-    // Close modal if open
-    const columnModal = bootstrap.Modal.getInstance(
-      document.getElementById("columnModal")
-    );
-    if (columnModal) columnModal.hide();
-  }
+      const columnModal = bootstrap.Modal.getInstance(
+        document.getElementById("columnModal")
+      );
+      if (columnModal) columnModal.hide();
+      Swal.fire('Deleted!', 'Your column has been deleted.', 'success');
+    }
+  });
 }
 
 // SEARCH FUNCTION
@@ -875,4 +887,32 @@ document.addEventListener("DOMContentLoaded", function () {
     .addEventListener("input", function (e) {
       searchTasks(e.target.value.trim());
     });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  document.getElementById("deleteAllDataBtn").addEventListener("click", function () {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "This will delete all data and cannot be undone!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Yes, delete all!',
+      cancelButtonText: 'Cancel'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        boardData.columns = [];
+        boardData.tasks = [];
+        initializeDefaultData();
+        saveData();
+        renderBoard();
+        Swal.fire(
+          'Deleted!',
+          'All data has been deleted and reset.',
+          'success'
+        );
+      }
+    });
+  });
 });

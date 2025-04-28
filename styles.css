@@ -469,3 +469,12 @@ body {
 .dropzone-highlight {
   background-color: rgba(99, 102, 241, 0.08);
 }
+
+.reset-btn:hover {
+  color: var(--danger);
+}
+
+#addTaskBtn:hover,
+#addColumnBtn:hover {
+  color: var(--primary);
+}
