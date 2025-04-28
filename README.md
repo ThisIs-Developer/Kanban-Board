@@ -24,11 +24,13 @@ A modern, intuitive task management system designed to boost productivity and te
 ---
 
 ## 📸 Screenshots
+![TaskFlow](assets/landing.png)
+*Initial screen view upon accessing TaskFlow.*
 
-![TaskFlow Board View](screenshots/board-view.png)
+![TaskFlow Board View](assets/board-view.png)
 *The main board view with multiple columns and tasks*
 
-![Task Detail Modal](screenshots/task-detail.png)
+![Task Detail Modal](asstes/task-detail.png)
 *Detailed task information modal*
 
 ---
